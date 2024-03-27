@@ -2,11 +2,11 @@ import streamlit as st
 import random
 import os
 
-"""
-NOTE: To run this you need to get into your python terminal and run the command:
-streamlit run "filename.py"
-At least, my Pycharm required me to do this
-"""
+
+# NOTE: To run this you need to get into your python terminal and run the command:
+# streamlit run "filename.py"
+# At least, my Pycharm required me to do this
+
 
 def loadmemes():
     direc = 'Memes for Meme God/'
