@@ -4,12 +4,12 @@ import os
 
 
 # NOTE: To run this you need to get into your python terminal and run the command:
-# streamlit run "filename.py"
+# streamlit run "Code/filename.py"
 # At least, my Pycharm required me to do this
 
 
 def loadmemes():
-    direc = 'Memes for Meme God/'
+    direc = 'Code/Memes for Meme God/'
     memeList = []
     for meme in os.listdir(direc):
         filePath = direc + meme # Directory attached to filename for easy getting
