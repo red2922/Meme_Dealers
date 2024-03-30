@@ -10,7 +10,12 @@
 > - Step 4: Press button and Enjoy Meme :D
 
 ## Index
+> - [Executive Summary](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/ExecutiveSummary.md)
+> - [Scope Statement](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Scope.md)
+> - [Milestones](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Milestones.md)
 
+## Working Schedule
+> ![](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Working%20Schedule.JPG)
 
 
 
