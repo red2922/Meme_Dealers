@@ -11,8 +11,16 @@
 
 ## Index
 > - [Executive Summary](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/ExecutiveSummary.md)
+>
 > - [Scope Statement](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Scope.md)
+>
 > - [Milestones](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Milestones.md)
+>
+> - [Meeting Notes](https://github.com/red2922/Meme_Dealers/tree/main/Documentation/Meetings)
+>
+> - [Security Statements](https://github.com/red2922/Meme_Dealers/tree/main/Documentation/Security%20Statements)
+>
+> - [Diagrams and Mockups](https://github.com/red2922/Meme_Dealers/tree/main/Documentation/Diagrams%26Mockups)
 
 ## Working Schedule
 > ![](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/Working%20Schedule.JPG)
