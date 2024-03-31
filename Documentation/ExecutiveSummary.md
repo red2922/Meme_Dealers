@@ -1,4 +1,5 @@
-Have you ever needed a little pick-me-up after a hard day or a chuckle during your break, but you don’t want to dig through your
+# The Executive Summary
+&nbsp; Have you ever needed a little pick-me-up after a hard day or a chuckle during your break, but you don’t want to dig through your
 millions of files to find your memes? Wouldn’t it be nice if you could just find any one of your countless memes to bring that
 smirk across your face at just a click of a button? Our client sure wishes that, so we’re making a Meme Generator program that
 will find and create memes for our client using Python! With just a click of a button, our meme generator will find and make a
