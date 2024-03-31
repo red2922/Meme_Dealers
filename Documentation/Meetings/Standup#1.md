@@ -1,4 +1,4 @@
-#March 29th Meme Generator Standup
+# March 29th Meme Generator Standup
 &nbsp; Today’s standup was a productive one. From making our very first iteration of the meme generator and testing it, we decided
 that the best course of action was to change from using streamlit to TkInter for our GUI, as it would allow us more control over
 the interface and subsequently give us more control over security. We also assigned work around to everyone to make sure everyone
