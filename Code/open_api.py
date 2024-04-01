@@ -56,5 +56,5 @@ class ImageGenerate:
         return image.data[0].url
 
 # How to use the generator
-Generator = ImageGenerate("Make me a meme of a dog")
-print(Generator.generateImage())
+#Generator = ImageGenerate("Make me a meme of a dog")
+#print(Generator.generateImage())
