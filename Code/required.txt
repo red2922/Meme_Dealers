@@ -1,0 +1,7 @@
+Required Modules
+- os
+- random
+- openai
+- python-dotenv
+- tkinter
+- PIL

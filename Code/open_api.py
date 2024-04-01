@@ -56,5 +56,5 @@ class ImageGenerate:
         return image.data[0].url
 
 # How to use the generator
-# ImageGenerate("Make me a meme of a cat hanging in there")
-# print(Generator.generateImage())
+#Generator = ImageGenerate("Make me a meme of a dog")
+#print(Generator.generateImage())
