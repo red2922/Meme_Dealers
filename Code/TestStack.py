@@ -14,21 +14,23 @@ def load_memes():
     return memeList
 
 
-def get_random_meme(memeList, seenList, label, check=False):
-    if check == False:
+def get_random_meme(memeList, seenList, label):
         meme = memeList.pop(0)
         meme_img = ImageTk.PhotoImage(Image.open(meme))
         label.config(image=meme_img)
         label.image = meme_img # Keep a reference to the image object
         print('forward', meme)
         seenList.insert(0, meme)
-    else:
+
+
+def last_meme(memeList, seenList, label):
         meme = seenList.pop(0)
         meme_img = ImageTk.PhotoImage(Image.open(meme))
         label.config(image=meme_img)
         label.image = meme_img
         print('backward', meme)
         memeList.insert(0, meme)
+
 
 if __name__ == "__main__":
     window = Tk()
@@ -41,8 +43,10 @@ if __name__ == "__main__":
 
     memes = load_memes()
     seen = []
-    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, seen, image_label))
-    backbtn = Button(window, text='Last Meme', command=lambda: get_random_meme(memes, seen, image_label, True))
+    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(
+        memes, seen, image_label))
+    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(
+        memes, seen, image_label))
     btn.pack()
     backbtn.pack()
 
