@@ -1,6 +1,7 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv, find_dotenv
+import urllib.request
 
 # Note this code will not work if there is no .env file present + API Key
 env = load_dotenv(find_dotenv())
@@ -67,9 +68,12 @@ class ImageGenerate:
         self.set_data(image)
         #return image.data[0].url
     
+    def saveImage(self, folder: str):
+        urllib.request.urlretrieve(self.get_url(), folder)
 
 
 # How to use the generator
 Generator = ImageGenerate("Make me a meme of a dog")
 Generator.generateImage()
 print(Generator.get_url())
+Generator.saveImage("Code\AI_Memes")
