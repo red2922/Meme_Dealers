@@ -69,14 +69,15 @@ class ImageGenerate:
         self.set_data(image)
         #return image.data[0].url
     
-    def saveImage(self):
-        new = open("new_image.png", "wb")
-        new.write(base64.decode(self.get_data()))
+    def saveImage(self, name:str):
+        new = open(name, "wb")
+        new.write(base64.b64decode(self.get_data().data[0].b64_json))
         new.close()
 
 
 # How to use the generator
 Generator = ImageGenerate("Make me a meme of a dog")
 Generator.generateImage()
+jake_path = "Code\AI_Memes"
 
-Generator.saveImage()
+Generator.saveImage("Code\AI_Memes\Dog.png")
