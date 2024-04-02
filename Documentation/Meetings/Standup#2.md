@@ -11,8 +11,8 @@ download the currently displayed meme, a share button to share a meme with anoth
 allow the user to look through the currently generated memes, the continuation of working with the API and connecting with 
 DALLE and ChatGPT in order to create new memes, and a better UI design. After this discussion, we assigned each member with 
 their tasks:
-•	Mitchell would work on a Mockup UI and the Toggle Button
-•	Trey would work on the documentation and the Download Button
-•	Jake would work on the API
-•	Isaac would work on the Security side and implementation of the Stack Algorithm and Backward/Forward Buttons
-•	Huigwang would work on fixing Image Size display and setting the default window sizes
+* Mitchell would work on a Mockup UI and the Toggle Button
+* Trey would work on the documentation and the Download Button
+* Jake would work on the API
+* Isaac would work on the Security side and implementation of the Stack Algorithm and Backward/Forward Buttons
+* Huigwang would work on fixing Image Size display and setting the default window sizes
