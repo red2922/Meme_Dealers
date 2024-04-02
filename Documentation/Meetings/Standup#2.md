@@ -1,5 +1,5 @@
 # April 1st Meme Generator Standup #2
-&nsbp; This standup meeting started off with running the current program iteration and discussing problems faced during and 
+&nbsp; This standup meeting started off with running the current program iteration and discussing problems faced during and 
 after development. We were able to convert the previous iteration from streamlit to TkInter, and we established an API 
 in order to communicate with OpenAI to generate new memes. Through this testing and discussion, the major bug that we 
 found was the scaling of images, as some images were so large that they would prevent the user from loading another meme 
