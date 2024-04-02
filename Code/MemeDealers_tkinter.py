@@ -13,20 +13,28 @@ def load_memes():
     return memeList
 
 
+def resize_img(img):
+    width = 500
+    width_rate = width / float(img.size[0])
+    height = int(float(img.size[1]) * float(width_rate))
+    return img.resize((width, height))
+
 def get_random_meme(memeList, label):
-    meme = memeList[random.randint(0, len(memeList) - 1)]
-    meme_img = ImageTk.PhotoImage(Image.open(meme))
-    label.config(image=meme_img)
-    label.image = meme_img  # Keep a reference to the image object
+    meme_path = memeList[random.randint(0, len(memeList) - 1)]
+    meme_img = Image.open(meme_path)
+    meme = ImageTk.PhotoImage(resize_img(meme_img))
+    label.config(image=meme)
+    label.image = meme  # Keep a reference to the image object
 
 
 if __name__ == "__main__":
     window = Tk()
     window.title('Meme Dealers')
-    window.geometry('1500x800')
+    window.geometry('1352x878')
 
-    welcome_img = ImageTk.PhotoImage(Image.open('Welcome.jpg'))
-    image_label = Label(window, image=welcome_img)
+    welcome_img = Image.open('Welcome.jpg')
+    welcome = ImageTk.PhotoImage(resize_img(welcome_img))
+    image_label = Label(window, image=welcome)
     image_label.pack()
 
     memes = load_memes()
