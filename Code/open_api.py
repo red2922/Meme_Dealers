@@ -15,6 +15,7 @@ class ImageGenerate:
         self._size = "1024x1024"
         self._quality = "standard"
         self._number = 1
+        self._image = None
 
     def get_prompt(self):
         return self._prompt
@@ -46,6 +47,16 @@ class ImageGenerate:
     def set_number(self, new: int):
         self._number = new
 
+    def get_data(self):
+        return self._image
+    
+    def set_data(self, new):
+        self._image = new
+
+    def get_url(self):
+        return self.get_data().data[0].url
+
+
     def generateImage(self):
         image = client.images.generate(model=self.get_model(),
                                        prompt=self.get_prompt(),
@@ -53,8 +64,12 @@ class ImageGenerate:
                                        quality=self.get_quality(),
                                        n=1, )
 
-        return image.data[0].url
+        self.set_data(image)
+        #return image.data[0].url
+    
+
 
 # How to use the generator
-#Generator = ImageGenerate("Make me a meme of a dog")
-#print(Generator.generateImage())
+Generator = ImageGenerate("Make me a meme of a dog")
+Generator.generateImage()
+print(Generator.get_url())
