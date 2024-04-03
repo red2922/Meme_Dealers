@@ -10,6 +10,7 @@ def load_memes():
     for meme in os.listdir(dir):
         filePath = dir + meme # Directory attached to filename for easy getting
         memeList.append(filePath)
+    random.shuffle(memeList)
     return memeList
 
 
