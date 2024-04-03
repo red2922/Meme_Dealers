@@ -19,14 +19,6 @@ def resize_img(img):
     height = int(float(img.size[1]) * float(width_rate))
     return img.resize((width, height))
 
-'''
-def get_random_meme(memeList, label):
-    meme_path = memeList[random.randint(0, len(memeList) - 1)]
-    meme_img = Image.open(meme_path)
-    meme_resized = ImageTk.PhotoImage(resize_img(meme_img))
-    label.config(image=meme_resized)
-    label.image = meme_resized  # Keep a reference to the image object
-'''
 
 def get_random_meme(memeList, seenList, label):
     meme = memeList.pop(0)
@@ -34,7 +26,6 @@ def get_random_meme(memeList, seenList, label):
     meme_resized = ImageTk.PhotoImage(resize_img(meme_img))
     label.config(image=meme_resized)
     label.image = meme_resized  # Keep a reference to the image object
-    print('forward', meme)
     seenList.insert(0, meme)
 
 
@@ -44,7 +35,6 @@ def last_meme(memeList, seenList, label):
     meme_resized = ImageTk.PhotoImage(resize_img(meme_img))
     label.config(image=meme_resized)
     label.image = meme_resized
-    print('backward', meme)
     memeList.insert(0, meme)
 og = True  # initiate toggle state
 
