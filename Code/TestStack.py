@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 import random
 import os
-
+import webbrowser
 
 def load_memes():
     dir = 'Memes for Meme God/'
@@ -31,6 +31,8 @@ def last_meme(memeList, seenList, label):
         print('backward', meme)
         memeList.insert(0, meme)
 
+def share(meme):
+    pass
 
 if __name__ == "__main__":
     window = Tk()
