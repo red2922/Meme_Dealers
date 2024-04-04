@@ -56,15 +56,16 @@ def set_file_name(prompt):
 def generate_and_show(connect: ImageGenerate, prompt: str, window: Tk):
     connect.set_prompt(prompt)
     file_name = set_file_name(prompt)
+    direct = "AI_Memes/" + file_name
 
     connect.generateImage()
-    connect.saveImage("AI_Memes/" + file_name)
+    connect.saveImage(direct)
 
     new = Toplevel(window)
     new.title(file_name)
     new.geometry("1352x878")
 
-    new_Image = Image.open("AI_Memes/" + file_name)
+    new_Image = Image.open(direct)
     ai_image = ImageTk.PhotoImage(resize_img(new_Image))
     Label(new, image=ai_image).pack()
     new.mainloop()
