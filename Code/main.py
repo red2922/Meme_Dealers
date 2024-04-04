@@ -97,11 +97,11 @@ if __name__ == "__main__":
     
     btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, image_label) if og == True else get_random_meme(ai_memes, ai_seen, image_label))
     backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, image_label) if og == True else last_meme(ai_memes, ai_seen, image_label))
-    btn.pack()
-    backbtn.pack()
+    btn.pack(ipady=10)
+    backbtn.pack(ipady=10)
 
     gene_btn = Button(window, text="Generate Meme", command=lambda: generate_and_show(generate, initial, window))
-    gene_btn.pack()
+    gene_btn.pack(ipady=10)
 
     toggle_og_face = ImageTk.PhotoImage(Image.open("toggle_og.jpg"))
     toggle_ai_face = ImageTk.PhotoImage(Image.open("toggle_ai.jpg"))
