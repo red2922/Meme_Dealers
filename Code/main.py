@@ -15,9 +15,9 @@ def load_memes(dir):
 
 
 def resize_img(img):
-    width = 500
-    width_rate = width / float(img.size[0])
-    height = int(float(img.size[1]) * float(width_rate))
+    height = 500
+    height_rate = height / float(img.size[1])
+    width = int(float(img.size[0]) * float(height_rate))
     return img.resize((width, height))
 
 
