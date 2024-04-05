@@ -76,8 +76,6 @@ class ImageGenerate:
 
 
 # How to use the generator
-Generator = ImageGenerate("Make me a meme of a dog")
-Generator.generateImage()
-jake_path = "Code\AI_Memes"
-
-Generator.saveImage("Code\AI_Memes\Dog.png")
+#Generator = ImageGenerate("Make me a meme of a dog")
+#Generator.generateImage()
+#Generator.saveImage("Code\AI_Memes\Dog.png")
