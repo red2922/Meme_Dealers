@@ -1,5 +1,5 @@
 # Sprint 4 Testing Documentation
-## FOR MAC:
+## For Mac:
 - Takes around 15-30 seconds for everything to load and be able to press any button
 - Selecting any button can either take 2-15 seconds to register input or allow me to click again
 &nbsp; &nbsp; - Solved for some reason when I shrink window size???? (most consistent method, sometimes just clicking off and back onto the window works as well)
