@@ -6,3 +6,4 @@
 - Flipping from saved AI to saved OG memes works as intended
   - Once flipped, stacks are emptied and goes to correctly chosen meme folder
 - Generate meme seems to always use brand-new AI generated meme, even when OG is chosen (intended?)
+- Error generated in Pycharm code when trying to create AI-generated image without wifi
