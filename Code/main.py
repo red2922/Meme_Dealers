@@ -57,14 +57,16 @@ def toggle():
         og = True
 
 def share(check):
-    #webbrowser.open("https://twitter.com/home")
+    webbrowser.open("https://twitter.com/home")
 
-
+    """
+    Selinium Code Here for later
+    
     options = webdriver.FirefoxOptions()
     driver = webdriver.Firefox(options=options)
     #options.add_argument("-profile", "")
     driver.get("https://twitter.com/home")
-    """"""
+    """
     if check[0] == 0:
         meme = last_meme(memes, meme_seen, back_forward_check, image_label)
     else:
