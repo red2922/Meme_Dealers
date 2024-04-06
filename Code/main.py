@@ -2,9 +2,9 @@ from tkinter import *
 from PIL import ImageTk, Image
 import random
 import os
-from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service as FirefoxService
+#from selenium import webdriver
+#from webdriver_manager.firefox import GeckoDriverManager
+#from selenium.webdriver.firefox.service import Service as FirefoxService
 from open_api import ImageGenerate
 import webbrowser
 
@@ -17,8 +17,7 @@ def load_memes(dir):
     return memeList
 
 
-def resize_img(img):
-    height = 500
+def resize_img(img, height):
     height_rate = height / float(img.size[1])
     width = int(float(img.size[0]) * float(height_rate))
     return img.resize((width, height))
@@ -28,7 +27,7 @@ def get_random_meme(memeList, seenList, check, label):
     check[0] = 0
     meme = memeList.pop(0)
     meme_img = Image.open(meme)
-    meme_resized = ImageTk.PhotoImage(resize_img(meme_img))
+    meme_resized = ImageTk.PhotoImage(resize_img(meme_img, 500))
     label.config(image=meme_resized)
     label.image = meme_resized  # Keep a reference to the image object
     seenList.insert(0, meme)
@@ -40,7 +39,7 @@ def last_meme(memeList, seenList, check, label):
     check[0] = 1
     meme = seenList.pop(0)
     meme_img = Image.open(meme)
-    meme_resized = ImageTk.PhotoImage(resize_img(meme_img))
+    meme_resized = ImageTk.PhotoImage(resize_img(meme_img, 500))
     label.config(image=meme_resized)
     label.image = meme_resized
     memeList.insert(0, meme)
@@ -89,7 +88,7 @@ def generate_and_show(connect: ImageGenerate, prompt: str, window: Tk):
     new.geometry("1352x878")
 
     new_Image = Image.open(direct)
-    ai_image = ImageTk.PhotoImage(resize_img(new_Image))
+    ai_image = ImageTk.PhotoImage(resize_img(new_Image, 500))
     Label(new, image=ai_image).pack()
     new.mainloop()
 
@@ -112,21 +111,20 @@ if __name__ == "__main__":
     window.geometry('1352x878')
 
     welcome_img = Image.open('Welcome.jpg')
-    welcome = ImageTk.PhotoImage(resize_img(welcome_img))
+    welcome = ImageTk.PhotoImage(resize_img(welcome_img, 500))
     image_label = Label(window, image=welcome)
     image_label.pack()
 
     memes = load_memes(meme_dir)
     ai_memes = load_memes(ai_dir)
     
-    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label) if og == True else get_random_meme(ai_memes, ai_seen, image_label))
-    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label) if og == True else last_meme(ai_memes, ai_seen, image_label))
+    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label))
+    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label))
     btn.pack(ipady=10)
     backbtn.pack(ipady=10)
 
     gene_btn = Button(window, text="Generate Meme", command=lambda: generate_and_show(generate, initial, window))
     gene_btn.pack(ipady=10)
-
     share_btn = Button(window, text='Share', command=lambda: share(back_forward_check))
     share_btn.pack(ipady=10)
 
