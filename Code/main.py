@@ -93,6 +93,14 @@ def generate_and_show(connect: ImageGenerate, prompt: str, window: Tk):
     new.mainloop()
 
 
+def prompt_rad():
+    global initial
+    if prompt.get() == 0:
+        initial = 'Make me a meme of a dog'
+    elif prompt.get() == 1:
+        initial = 'Make me a meme of a cat'
+
+
 if __name__ == "__main__":
     global og
 
@@ -132,5 +140,12 @@ if __name__ == "__main__":
     toggle_ai_face = ImageTk.PhotoImage(Image.open("toggle_ai.jpg"))
     toggle_btn = Button(window, image=toggle_og_face, command=lambda: toggle())
     toggle_btn.pack()
+
+    prompt = IntVar()
+
+    prompt_dog = Radiobutton(window, text='Dog', variable=prompt, value=0, command=lambda: prompt_rad())
+    prompt_cat = Radiobutton(window, text='Cat', variable=prompt, value=1, command=lambda: prompt_rad())
+    prompt_dog.pack()
+    prompt_cat.pack()
 
     window.mainloop()
