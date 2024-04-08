@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     window = Tk()
     window.title('Meme Dealers')
-    window.geometry('1352x878')
+    window.geometry('1512x982+0+0')
 
     welcome_img = Image.open('Welcome.jpg')
     welcome = ImageTk.PhotoImage(resize_img(welcome_img, 500))
