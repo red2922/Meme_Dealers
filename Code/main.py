@@ -55,8 +55,8 @@ def toggle():
         toggle_btn.config(image=toggle_og_face)
         og = True
 
-def share(check):
-    webbrowser.open("https://twitter.com/home")
+def share(check, website):
+    webbrowser.open(website)
 
     """
     Selinium Code Here for later
@@ -133,8 +133,14 @@ if __name__ == "__main__":
 
     gene_btn = Button(window, text="Generate Meme", command=lambda: generate_and_show(generate, initial, window))
     gene_btn.pack(ipady=10)
-    share_btn = Button(window, text='Share', command=lambda: share(back_forward_check))
-    share_btn.pack(ipady=10)
+    share_twitter = Button(window, text='Twitter', command=lambda: share(back_forward_check, 'https://twitter.com/home'))
+    share_discord = Button(window, text='Discord', command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
+    share_reddit = Button(window, text='Reddit', command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
+    share_facebook = Button(window, text='Facebook', command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
+    share_twitter.pack(ipady=10)
+    share_discord.pack()
+    share_facebook.pack()
+    share_reddit.pack()
 
     toggle_og_face = ImageTk.PhotoImage(Image.open("toggle_og.jpg"))
     toggle_ai_face = ImageTk.PhotoImage(Image.open("toggle_ai.jpg"))
