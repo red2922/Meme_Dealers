@@ -31,7 +31,6 @@ def get_random_meme(memeList, seenList, check, label):
     label.config(image=meme_resized)
     label.image = meme_resized  # Keep a reference to the image object
     seenList.insert(0, meme)
-    print(str(meme))
     return meme
 
 
@@ -73,20 +72,20 @@ def share(check, website):
     print(meme)
 
 def set_file_name(prompt):
-    return prompt.split()[6] + ".png"
+    return prompt.split()[6] + str(random.randint(0,100000000)) + ".png"
 
 def generate_and_show(connect: ImageGenerate, prompt: str, window: Tk):
     connect.set_prompt(prompt)
     file_name = set_file_name(prompt)
     direct = "AI_Memes/" + file_name
 
-    connect.generateImage()
-    connect.saveImage(direct)
-
     new = Toplevel(window)
     new.title(file_name)
     new.geometry("1352x878")
 
+    connect.generateImage()
+    connect.saveImage(direct)
+    
     new_Image = Image.open(direct)
     ai_image = ImageTk.PhotoImage(resize_img(new_Image, 500))
     Label(new, image=ai_image).pack()
