@@ -23,7 +23,7 @@ def resize_img(img, height):
     return img.resize((width, height))
 
 
-def get_random_meme(memeList, seenList, check, label):
+def get_random_meme(memeList, seenList, check, label, user_inp):
     check[0] = 0
     meme = memeList.pop(0)
     meme_img = Image.open(meme)
@@ -31,10 +31,14 @@ def get_random_meme(memeList, seenList, check, label):
     label.config(image=meme_resized)
     label.image = meme_resized  # Keep a reference to the image object
     seenList.insert(0, meme)
+    print(str(meme))
+    if len(user_inp) == 8:
+        user_inp.pop(0)
+    user_inp.append("get")
     return meme
 
 
-def last_meme(memeList, seenList, check, label):
+def last_meme(memeList, seenList, check, label, user_inp, konami_code):
     check[0] = 1
     meme = seenList.pop(0)
     meme_img = Image.open(meme)
@@ -42,6 +46,11 @@ def last_meme(memeList, seenList, check, label):
     label.config(image=meme_resized)
     label.image = meme_resized
     memeList.insert(0, meme)
+    if len(user_inp) == 8:
+        user_inp.pop(0)
+    user_inp.append("last")
+    if user_inp == konami_code:
+        webbrowser.open("https://www.youtube.com/watch?v=3VBn4b1rxf0")
     return meme
 
 
@@ -110,6 +119,8 @@ if __name__ == "__main__":
     ai_seen = []
     back_forward_check = [0]
     og = True
+    konami_code = ["get", "get", "last", "last", "get", "last", "get", "last"]
+    user_inp = []
 
     generate = ImageGenerate(initial)
 
@@ -125,8 +136,8 @@ if __name__ == "__main__":
     memes = load_memes(meme_dir)
     ai_memes = load_memes(ai_dir)
     
-    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label))
-    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label))
+    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label))
+    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label))
     btn.pack(ipady=10)
     backbtn.pack(ipady=10)
 
