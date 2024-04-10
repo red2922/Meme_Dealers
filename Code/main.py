@@ -107,6 +107,8 @@ def prompt_rad():
         initial = 'Make me a meme of a dog'
     elif prompt.get() == 1:
         initial = 'Make me a meme of a cat'
+    elif prompt.get() == 2:
+        initial = 'Make me a meme of a programmer'
 
 
 if __name__ == "__main__":
@@ -131,37 +133,48 @@ if __name__ == "__main__":
     welcome_img = Image.open('Welcome.jpg')
     welcome = ImageTk.PhotoImage(resize_img(welcome_img, 500))
     image_label = Label(window, image=welcome)
-    image_label.pack()
-
-    memes = load_memes(meme_dir)
-    ai_memes = load_memes(ai_dir)
-    
-    btn = Button(window, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label))
-    backbtn = Button(window, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label))
-    btn.pack(ipady=10)
-    backbtn.pack(ipady=10)
-
-    gene_btn = Button(window, text="Generate Meme", command=lambda: generate_and_show(generate, initial, window))
-    gene_btn.pack(ipady=10)
-    share_twitter = Button(window, text='Twitter', command=lambda: share(back_forward_check, 'https://twitter.com/home'))
-    share_discord = Button(window, text='Discord', command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
-    share_reddit = Button(window, text='Reddit', command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
-    share_facebook = Button(window, text='Facebook', command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
-    share_twitter.pack(ipady=10)
-    share_discord.pack()
-    share_facebook.pack()
-    share_reddit.pack()
+    image_label.pack(pady=(10, 10))
 
     toggle_og_face = ImageTk.PhotoImage(Image.open("toggle_og.jpg"))
     toggle_ai_face = ImageTk.PhotoImage(Image.open("toggle_ai.jpg"))
     toggle_btn = Button(window, image=toggle_og_face, command=lambda: toggle())
-    toggle_btn.pack()
+    toggle_btn.place(x=20, y=250)
+
+    memes = load_memes(meme_dir)
+    ai_memes = load_memes(ai_dir)
+
+    btn_frame = Frame(window)
+    btn_frame.pack()
+
+    btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label))
+    back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label))
+    btn.pack(side='left', ipady=10)
+    back_btn.pack(side='left', ipady=10)
+
+    gene_btn = Button(window, text="Generate Meme", command=lambda: generate_and_show(generate, initial, window))
+    gene_btn.pack(ipady=10)
 
     prompt = IntVar()
 
     prompt_dog = Radiobutton(window, text='Dog', variable=prompt, value=0, command=lambda: prompt_rad())
     prompt_cat = Radiobutton(window, text='Cat', variable=prompt, value=1, command=lambda: prompt_rad())
+    prompt_programmer = Radiobutton(window, text='Programmer', variable=prompt, value=2, command=lambda: prompt_rad())
     prompt_dog.pack()
     prompt_cat.pack()
+    prompt_programmer.pack()
+
+    share_btn_frame = Frame(window)
+    share_btn_frame.pack(pady=(50, 10))
+
+    share_label = Label(share_btn_frame, text="Share", font=("TkDefaultFont", 20))
+    share_twitter = Button(share_btn_frame, text='Twitter', command=lambda: share(back_forward_check, 'https://twitter.com/home'))
+    share_discord = Button(share_btn_frame, text='Discord', command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
+    share_reddit = Button(share_btn_frame, text='Reddit', command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
+    share_facebook = Button(share_btn_frame, text='Facebook', command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
+    share_label.pack()
+    share_twitter.pack(side='left')
+    share_discord.pack(side='left')
+    share_facebook.pack(side='left')
+    share_reddit.pack(side='left')
 
     window.mainloop()
