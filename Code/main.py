@@ -124,6 +124,17 @@ def prompt_rad():
         initial = 'Make me a meme of a programmer'
 
 
+def adjective_rad(initial):
+    if adjective.get() == 0:
+        initial += ' that is an alpha'
+    elif adjective.get() == 1:
+        initial += ' that is a beta'
+    elif adjective.get() == 2:
+        initial += ' that is a sigma'
+    elif adjective.get() == 3:
+        initial += ' that is a giga'
+
+
 if __name__ == "__main__":
     global og
 
@@ -177,6 +188,17 @@ if __name__ == "__main__":
     prompt_dog.pack()
     prompt_cat.pack()
     prompt_programmer.pack()
+
+    adjective = IntVar()
+
+    adj_alpha = Radiobutton(window, text='Alpha', variable=adjective, value=0, command=lambda: adjective_rad())
+    adj_beta = Radiobutton(window, text='Beta', variable=adjective, value=1, command=lambda: adjective_rad())
+    adj_sigma = Radiobutton(window, text='Sigma', variable=adjective, value=2, command=lambda: adjective_rad())
+    adj_giga = Radiobutton(window, text='Giga', variable=adjective, value=3, command=lambda: adjective_rad())
+    adj_alpha.pack()
+    adj_beta.pack()
+    adj_sigma.pack()
+    adj_giga.pack()
 
     share_btn_frame = Frame(window)
     share_btn_frame.pack(pady=(50, 10))
