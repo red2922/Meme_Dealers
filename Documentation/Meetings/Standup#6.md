@@ -1,4 +1,4 @@
-# Meme Generator Standup Record 6
+# Meme Generator Standup Record #6 (April 10th, 2024)
 For our final meeting, it was a short and simple one. After briefly looking at the current iteration, we discussed any
 difficulties we’ve had implementing the last couple changes. From this discussion, we’ve decided that we may scrap the
 loading screen while the ai-generated image is being made, as it causes a conflict with tkinter not wanting to run multiple
