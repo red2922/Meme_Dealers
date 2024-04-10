@@ -63,6 +63,15 @@ def toggle():
         toggle_btn.config(image=toggle_og_face)
         og = True
 
+
+def copyToClipboard(meme):
+    clipboard = Tk()
+    clipboard.withdraw()
+    clipboard.clipboard_clear()
+    clipboard.clipboard_get(type=meme + '/png')
+    print("Clipboard")
+
+
 def share(check, website):
     webbrowser.open(website)
 
@@ -75,10 +84,14 @@ def share(check, website):
     driver.get("https://twitter.com/home")
     """
     if check[0] == 0:
-        meme = last_meme(memes, meme_seen, back_forward_check, image_label)
+        meme = last_meme(memes, meme_seen, back_forward_check, image_label, user_inp=[], konami_code=0)
     else:
-        meme = get_random_meme(memes, meme_seen, back_forward_check, image_label)
+        meme = get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp=[])
+    meme = meme.lstrip('Memes for Meme God/')
     print(meme)
+    copyToClipboard(meme)
+    print("The code got to here")
+
 
 def set_file_name(prompt):
     return prompt.split()[6] + str(random.randint(0,100000000)) + ".png"
@@ -169,14 +182,19 @@ if __name__ == "__main__":
     share_btn_frame.pack(pady=(50, 10))
 
     share_label = Label(share_btn_frame, text="Share", font=("TkDefaultFont", 20))
-    share_twitter = Button(share_btn_frame, text='Twitter', command=lambda: share(back_forward_check, 'https://twitter.com/home'))
-    share_discord = Button(share_btn_frame, text='Discord', command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
-    share_reddit = Button(share_btn_frame, text='Reddit', command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
-    share_facebook = Button(share_btn_frame, text='Facebook', command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
+    discord_img = ImageTk.PhotoImage(resize_img(Image.open('discord.png'), 64))
+    facebook_img = ImageTk.PhotoImage(resize_img(Image.open('facebook.png'),64))
+    reddit_img = ImageTk.PhotoImage(resize_img(Image.open('Reddit.png'), 64))
+    twitter_img = ImageTk.PhotoImage(resize_img(Image.open('twitter.jpg'),64))
+    share_twitter = Button(window, image=twitter_img, command=lambda: share(back_forward_check, 'https://twitter.com/home'))
+    share_discord = Button(window, image=discord_img, command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
+    share_reddit = Button(window, image=reddit_img, command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
+    share_facebook = Button(window, image=facebook_img, command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
     share_label.pack()
-    share_twitter.pack(side='left')
-    share_discord.pack(side='left')
-    share_facebook.pack(side='left')
-    share_reddit.pack(side='left')
+    share_twitter.place(x=50, y=650)
+    share_discord.place(x=50, y=575)
+    share_facebook.place(x=50, y=500)
+    share_reddit.place(x=50, y=425)
 
     window.mainloop()
+
