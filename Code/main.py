@@ -146,6 +146,8 @@ if __name__ == "__main__":
     btn_frame = Frame(window)
     btn_frame.pack()
 
+    btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label, user_inp))
+    back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label, user_inp, konami_code))
     btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label,user_inp))
     back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label,user_inp, konami_code))
     btn.pack(side='left', ipady=10)
