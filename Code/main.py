@@ -181,7 +181,7 @@ if __name__ == "__main__":
     share_btn_frame = Frame(window)
     share_btn_frame.pack(pady=(50, 10))
 
-    share_label = Label(share_btn_frame, text="Share", font=("TkDefaultFont", 20))
+    share_label = Label(window, text="Share", font=("TkDefaultFont", 20))
     discord_img = ImageTk.PhotoImage(resize_img(Image.open('discord.png'), 64))
     facebook_img = ImageTk.PhotoImage(resize_img(Image.open('facebook.png'),64))
     reddit_img = ImageTk.PhotoImage(resize_img(Image.open('Reddit.png'), 64))
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     share_discord = Button(window, image=discord_img, command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
     share_reddit = Button(window, image=reddit_img, command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
     share_facebook = Button(window, image=facebook_img, command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
-    share_label.pack()
+    share_label.place(x=50, y=400)
     share_twitter.place(x=50, y=650)
     share_discord.place(x=50, y=575)
     share_facebook.place(x=50, y=500)
