@@ -7,8 +7,14 @@
 >   - random
 >   - PIL
 >   - tkinter
-> -  Step 3: run main.py
-> - Step 4: Press button and Enjoy Meme :D
+>   - openai
+>   - python-dotenv
+>   - base64
+>   - webbrowser
+>   - Step 3: create a .env file within code directory
+>   - Step 4: Set OPEN_API_KEY within .env file
+> -  Step 5: run main.py
+> - Step 6: Press buttosn and Enjoy Meme :D
 
 ## Index
 > - [Executive Summary](https://github.com/red2922/Meme_Dealers/blob/main/Documentation/ExecutiveSummary.md)
