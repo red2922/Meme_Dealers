@@ -87,9 +87,9 @@ def share(check, website):
     elif check[0] == 1 and og == True:
         meme = get_random_meme(memes, meme_ind, check, image_label, user_inp=[])
     elif check[0] == 0 and og == False:
-        meme = last_meme(ai_memes, ai_ind, check, image_label, user_inp, konami_code)
+        meme = last_meme(ai_memes, ai_ind, check, image_label, user_inp=[], konami_code=0)
     else:
-        meme = get_random_meme(ai_memes, ai_ind, check, image_label, user_inp, konami_code)
+        meme = get_random_meme(ai_memes, ai_ind, check, image_label, user_inp=[])
     print(meme)
     copyToClipboard(meme)
     print("The code got to here")
