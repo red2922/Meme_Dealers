@@ -4,9 +4,6 @@ import random
 import os
 from io import BytesIO
 import win32clipboard
-#from selenium import webdriver
-#from webdriver_manager.firefox import GeckoDriverManager
-#from selenium.webdriver.firefox.service import Service as FirefoxService
 from open_api import ImageGenerate
 import webbrowser
 
@@ -85,14 +82,6 @@ def copyToClipboard(meme):
 def share(check, website):
     webbrowser.open(website)
 
-    """
-    Selinium Code Here for later
-    
-    options = webdriver.FirefoxOptions()
-    driver = webdriver.Firefox(options=options)
-    #options.add_argument("-profile", "")
-    driver.get("https://twitter.com/home")
-    """
     if check[0] == 0 and og == True:
         meme = last_meme(memes, meme_ind, check, image_label, user_inp=[], konami_code=0)
     elif check[0] == 1 and og == True:
