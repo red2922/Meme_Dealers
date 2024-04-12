@@ -1,0 +1,11 @@
+# Isaac Goff Completed Tasks
+> - All Security Statements (S1-7)
+> - Display random meme (S1)
+> - Backend Choose Random Meme(S1)
+> - Working Prototype (S1)
+> - List to list implementation (S3)
+> - Forward-backword button (S3)
+> - Place forward-backword button in main program file (S4)
+> - Share Button (S4-7)
+> - Replace list to list with index pointer (S6)
+> - Easter Eggs (S6-7)
