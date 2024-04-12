@@ -2,6 +2,8 @@ from tkinter import *
 from PIL import ImageTk, Image
 import random
 import os
+from io import BytesIO
+import win32clipboard
 #from selenium import webdriver
 #from webdriver_manager.firefox import GeckoDriverManager
 #from selenium.webdriver.firefox.service import Service as FirefoxService
@@ -23,14 +25,14 @@ def resize_img(img, height):
     return img.resize((width, height))
 
 
-def get_random_meme(memeList, seenList, check, label, user_inp):
+def get_random_meme(memeList, meme_ind, check, label, user_inp):
     check[0] = 0
-    meme = memeList.pop(0)
+    meme = memeList[meme_ind[0]]
+    meme_ind[0] += 1
     meme_img = Image.open(meme)
     meme_resized = ImageTk.PhotoImage(resize_img(meme_img, 500))
     label.config(image=meme_resized)
     label.image = meme_resized  # Keep a reference to the image object
-    seenList.insert(0, meme)
     print(str(meme))
     if len(user_inp) == 8:
         user_inp.pop(0)
@@ -38,14 +40,16 @@ def get_random_meme(memeList, seenList, check, label, user_inp):
     return meme
 
 
-def last_meme(memeList, seenList, check, label, user_inp, konami_code):
+def last_meme(memeList, meme_ind, check, label, user_inp, konami_code):
     check[0] = 1
-    meme = seenList.pop(0)
+    meme_ind[0] -= 1
+    if meme_ind[0] < 0:
+        meme_ind[0] = 0
+    meme = memeList[meme_ind[0]]
     meme_img = Image.open(meme)
     meme_resized = ImageTk.PhotoImage(resize_img(meme_img, 500))
     label.config(image=meme_resized)
     label.image = meme_resized
-    memeList.insert(0, meme)
     if len(user_inp) == 8:
         user_inp.pop(0)
     user_inp.append("last")
@@ -65,10 +69,16 @@ def toggle():
 
 
 def copyToClipboard(meme):
-    clipboard = Tk()
-    clipboard.withdraw()
-    clipboard.clipboard_clear()
-    clipboard.clipboard_get(type=meme + '/png')
+    memeImg = Image.open(meme)
+    output = BytesIO()
+    memeImg.convert('RGB').save(output, "BMP")
+    byteMeme = output.getvalue()[14:]
+    output.close()
+
+    win32clipboard.OpenClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.SetClipboardData(win32clipboard.CF_DIB, byteMeme)
+    win32clipboard.CloseClipboard()
     print("Clipboard")
 
 
@@ -83,11 +93,14 @@ def share(check, website):
     #options.add_argument("-profile", "")
     driver.get("https://twitter.com/home")
     """
-    if check[0] == 0:
-        meme = last_meme(memes, meme_seen, back_forward_check, image_label, user_inp=[], konami_code=0)
+    if check[0] == 0 and og == True:
+        meme = last_meme(memes, meme_ind, check, image_label, user_inp=[], konami_code=0)
+    elif check[0] == 1 and og == True:
+        meme = get_random_meme(memes, meme_ind, check, image_label, user_inp=[])
+    elif check[0] == 0 and og == False:
+        meme = last_meme(ai_memes, ai_ind, check, image_label, user_inp, konami_code)
     else:
-        meme = get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp=[])
-    meme = meme.lstrip('Memes for Meme God/')
+        meme = get_random_meme(ai_memes, ai_ind, check, image_label, user_inp, konami_code)
     print(meme)
     copyToClipboard(meme)
     print("The code got to here")
@@ -141,8 +154,8 @@ if __name__ == "__main__":
     meme_dir = 'Memes for Meme God/'
     ai_dir = 'AI_Memes/'
     initial = "Make me a meme of a dog"
-    meme_seen = []
-    ai_seen = []
+    meme_ind = [0]
+    ai_ind = [0]
     back_forward_check = [0]
     og = True
     konami_code = ["get", "get", "last", "last", "get", "last", "get", "last"]
@@ -170,10 +183,8 @@ if __name__ == "__main__":
     btn_frame = Frame(window)
     btn_frame.pack()
 
-    btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label, user_inp))
-    back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label, user_inp, konami_code))
-    btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_seen, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_seen, back_forward_check, image_label,user_inp))
-    back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_seen, back_forward_check, image_label, user_inp, konami_code) if og == True else last_meme(ai_memes, ai_seen, back_forward_check, image_label,user_inp, konami_code))
+    btn = Button(btn_frame, text='Get Meme', command=lambda: get_random_meme(memes, meme_ind, back_forward_check, image_label, user_inp) if og == True else get_random_meme(ai_memes, ai_ind, back_forward_check, image_label, user_inp))
+    back_btn = Button(btn_frame, text='Last Meme', command=lambda: last_meme(memes, meme_ind, back_forward_check, image_label, user_inp,konami_code) if og == True else last_meme(ai_memes, ai_ind, back_forward_check, image_label, user_inp, konami_code))
     btn.pack(side='right', ipady=10)
     back_btn.pack(side='left', ipady=10)
 
@@ -208,15 +219,18 @@ if __name__ == "__main__":
     facebook_img = ImageTk.PhotoImage(resize_img(Image.open('facebook.png'),64))
     reddit_img = ImageTk.PhotoImage(resize_img(Image.open('Reddit.png'), 64))
     twitter_img = ImageTk.PhotoImage(resize_img(Image.open('twitter.jpg'),64))
+    bad_img = ImageTk.PhotoImage(resize_img(Image.open('bad.png'), 64))
     share_twitter = Button(window, image=twitter_img, command=lambda: share(back_forward_check, 'https://twitter.com/home'))
     share_discord = Button(window, image=discord_img, command=lambda: share(back_forward_check, 'https://discord.com/channels/@me'))
     share_reddit = Button(window, image=reddit_img, command=lambda: share(back_forward_check, 'https://www.reddit.com/'))
     share_facebook = Button(window, image=facebook_img, command=lambda: share(back_forward_check, 'https://www.facebook.com/'))
-    share_label.place(x=50, y=400)
+    happy_easter = Button(window, image=bad_img, command=lambda: share(back_forward_check, 'https://www.oxfordlearnersdictionaries.com/definition/american_english/awful_1'))
+    share_label.place(x=50, y=310)
     share_twitter.place(x=50, y=650)
     share_discord.place(x=50, y=575)
     share_facebook.place(x=50, y=500)
     share_reddit.place(x=50, y=425)
+    happy_easter.place(x=50, y=350)
 
     window.mainloop()
 
